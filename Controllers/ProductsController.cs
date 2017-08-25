@@ -7,25 +7,25 @@ using Microsoft.AspNetCore.Mvc;
 namespace webapi.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class ProductsController : Controller
     {
-        private MyDbContext _context;
+        private MyDbContext _dbContext;
 
-        public ValuesController(MyDbContext dbContext)
+        public ProductsController(MyDbContext dbContext)
         {
-            this._context = dbContext;
+            this._dbContext = dbContext;
         }
 
         [HttpGet()]
         public List<Product> Get()
         {
-            return this._context.Products.ToList();
+            return this._dbContext.Products.ToList();
         }
 
         [HttpGet("{id}")]
         public Product Get(int id)
         {
-            return this._context.Products.FirstOrDefault(e => e.Id == id);
+            return this._dbContext.Products.FirstOrDefault(e => e.Id == id);
         }
 
         [HttpPost]
@@ -36,14 +36,14 @@ namespace webapi.Controllers
                 return BadRequest();
             }
 
-            var p = _context.Products.FirstOrDefault(t => t.Id == product.Id);
+            var p = _dbContext.Products.FirstOrDefault(t => t.Id == product.Id);
             if (p != null)
             {
                 return BadRequest();
             }
 
-            this._context.Products.Add(product);
-            this._context.SaveChanges();
+            this._dbContext.Products.Add(product);
+            this._dbContext.SaveChanges();
 
             return Created("Get", product);
         }
@@ -56,7 +56,7 @@ namespace webapi.Controllers
                 return BadRequest();
             }
 
-            var product = _context.Products.FirstOrDefault(t => t.Id == id);
+            var product = _dbContext.Products.FirstOrDefault(t => t.Id == id);
             if (product == null)
             {
                 return NotFound();
@@ -65,22 +65,22 @@ namespace webapi.Controllers
             product.Stock = productIn.Stock;
             product.Name = productIn.Name;
 
-            _context.Products.Update(product);
-            _context.SaveChanges();
+            _dbContext.Products.Update(product);
+            _dbContext.SaveChanges();
             return new OkObjectResult(product);
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var todo = _context.Products.FirstOrDefault(t => t.Id == id);
+            var todo = _dbContext.Products.FirstOrDefault(t => t.Id == id);
             if (todo == null)
             {
                 return NotFound();
             }
 
-            _context.Products.Remove(todo);
-            _context.SaveChanges();
+            _dbContext.Products.Remove(todo);
+            _dbContext.SaveChanges();
             return new NoContentResult();
         }
     }

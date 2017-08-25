@@ -1,5 +1,5 @@
-curl -X GET http://localhost:5000/api/values -H "accept: application/json"
-curl -X GET http://localhost:5000/api/values -H "accept: application/xml"
-curl -X POST http://localhost:5000/api/values -H "content-type: application/json" -d "{'Id':'5','Name':'Luke1','Stock':'2'}"
-curl -X PUT http://localhost:5000/api/values/5 -H "content-type: application/json" -d "{'Id':'5','Name':'Luke3','Stock':'23'}"
-curl -X DELETE http://localhost:5000/api/values/5
+curl -X GET http://localhost:5000/api/products -H "accept: application/json"
+curl -X GET http://localhost:5000/api/products -H "accept: application/xml"
+curl -X POST http://localhost:5000/api/products -H "content-type: application/json" -d "{'Id':'5','Name':'Flour','Stock':'2'}"
+curl -X PUT http://localhost:5000/api/products/5 -H "content-type: application/json" -d "{'Id':'5','Name':'White Flour','Stock':'23'}"
+curl -X DELETE http://localhost:5000/api/products/5

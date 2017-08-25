@@ -58,14 +58,21 @@ namespace webapi
             context.Products.Add(new Product
             {
                 Id = 1,
-                Name = "Luke",
+                Name = "Bread",
                 Stock = 10
             });
 
             context.Products.Add(new Product
             {
                 Id = 2,
-                Name = "Nuke",
+                Name = "Milk",
+                Stock = 13
+            });
+
+            context.Products.Add(new Product
+            {
+                Id = 3,
+                Name = "Apple",
                 Stock = 13
             });
 
